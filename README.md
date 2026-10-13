@@ -106,4 +106,4 @@ Sudah disiapkan untuk deploy gratis:
 
 ## License
 
-Untuk keperluan tugas/kuliah.
+Untuk projek random dummy.
