@@ -1,0 +1,4 @@
+# Jaga line ending LF — Dockerfile dengan CRLF akan gagal di-build
+Dockerfile text eol=lf
+.gitattributes text eol=lf
+*.sh text eol=lf
