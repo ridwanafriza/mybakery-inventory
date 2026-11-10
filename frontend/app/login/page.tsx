@@ -8,6 +8,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AlertCircle, Cake, Eye, EyeOff } from "lucide-react";
 
+/** Akun demo yang ditampilkan saat mode mock aktif (lihat `next.config.ts`). */
+const DEMO_ACCOUNTS = [
+  { label: "Super Admin", email: "admin@mybakery.com" },
+  { label: "Admin Cabang", email: "admin1@mybakery.com" },
+  { label: "Staf Cabang", email: "staf1@mybakery.com" },
+];
+
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -206,6 +213,34 @@ function LoginForm() {
               )}
             </Button>
           </form>
+
+          {process.env.NEXT_PUBLIC_USE_MOCK === "1" && (
+            <div className="mt-6 rounded-xl border border-line/60 bg-accent/5 p-4">
+              <p className="mb-2 text-[12px] font-semibold text-ink">
+                Mode demo — data contoh, klik untuk mengisi
+              </p>
+              <div className="flex flex-col gap-1.5">
+                {DEMO_ACCOUNTS.map((account) => (
+                  <button
+                    key={account.email}
+                    type="button"
+                    onClick={() => {
+                      setEmail(account.email);
+                      setPassword("password");
+                      setError("");
+                    }}
+                    className="flex items-center justify-between rounded-lg bg-background px-3 py-2 text-left text-[12px] text-ink-muted transition-colors hover:bg-accent/10"
+                  >
+                    <span className="font-medium text-ink">{account.label}</span>
+                    <span>{account.email}</span>
+                  </button>
+                ))}
+              </div>
+              <p className="mt-2 text-[11px] text-ink-muted">
+                Password semua akun: <span className="font-semibold">password</span>
+              </p>
+            </div>
+          )}
 
           <p className="mt-8 text-center text-[13px] text-ink-muted">
             <span className="font-semibold text-ink cursor-pointer hover:underline"></span>
